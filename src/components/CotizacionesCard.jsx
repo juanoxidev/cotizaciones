@@ -24,7 +24,7 @@ const CotizacionesCard = ({ nombre, cotizacion, monto, operacion }) => {
               <p>{nombre}</p>
               <p>{`${formatoGuarani.format(monto * compra)}`}</p>
             </div>
-            <p>Vende cada dolar a {formatoGuarani.format(venta)}.-</p>.-
+            <p>Vende cada dolar a {formatoGuarani.format(venta)}.-</p>
           </div>
         </>
       );

@@ -83,7 +83,7 @@ const CotizacionesContainer = () => {
   return (
     <>
       <div className="encabezado">
-        <h1>Cotizaciones USD - Gs </h1>
+        <h1>Cotizaciones USD - GS </h1>
         <h3>Ultima Actualizacion: {fecha}</h3>
         <form>
           <input
