@@ -1,0 +1,21 @@
+.encabezado {
+  background-color: rgba(0, 0, 0, 0.568);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 4px;
+}
+
+.encabezado form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+}
+
+.encabezado form input {
+  text-align: center;
+}
