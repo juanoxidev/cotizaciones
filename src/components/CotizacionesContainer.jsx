@@ -96,19 +96,21 @@ const CotizacionesContainer = () => {
           <button onClick={venta}>Vender</button>
         </form>
       </div>
-      {guarani.map((c, index) => {
-        const { nombre, cotizacion } = c;
-        return (
-          <div key={index}>
-            <CotizacionesCard
-              nombre={nombre}
-              cotizacion={cotizacion}
-              monto={monto}
-              operacion={operacion}
-            />
-          </div>
-        );
-      })}
+      <div className="container-cards">
+        {guarani.map((c, index) => {
+          const { nombre, cotizacion } = c;
+          return (
+            <div key={index}>
+              <CotizacionesCard
+                nombre={nombre}
+                cotizacion={cotizacion}
+                monto={monto}
+                operacion={operacion}
+              />
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };

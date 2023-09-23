@@ -8,8 +8,8 @@ const CotizacionesCard = ({ nombre, cotizacion, monto, operacion }) => {
   const render = () => {
     if (operacion === "vender" && monto != 0) {
       return (
-        <div className="container">
-          <div className="container-header">
+        <div className="card">
+          <div className="card-header">
             <p>{nombre}</p>
             <p>{`${formatoGuarani.format(monto * compra)}`}</p>
           </div>
@@ -18,15 +18,13 @@ const CotizacionesCard = ({ nombre, cotizacion, monto, operacion }) => {
       );
     } else if (operacion === "comprar" && monto != 0) {
       return (
-        <>
-          <div className="container">
-            <div className="container-header">
-              <p>{nombre}</p>
-              <p>{`${formatoGuarani.format(monto * compra)}`}</p>
-            </div>
-            <p>Vende cada dolar a {formatoGuarani.format(venta)}.-</p>
+        <div className="card">
+          <div className="card-header">
+            <p>{nombre}</p>
+            <p>{`${formatoGuarani.format(monto * venta)}`}</p>
           </div>
-        </>
+          <p>Vende cada dolar a {formatoGuarani.format(venta)}.-</p>
+        </div>
       );
     }
   };
