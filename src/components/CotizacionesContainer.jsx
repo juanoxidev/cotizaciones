@@ -83,13 +83,13 @@ const CotizacionesContainer = () => {
   return (
     <>
       <div className="encabezado">
-        <h1>Cotizaciones USD - PYG </h1>
+        <h1>Cotizaciones USD - Gs </h1>
         <h3>Ultima Actualizacion: {fecha}</h3>
         <form>
           <input
             className="monto"
             type="number"
-            placeholder="Ingrese la cantidad de dolares a cambiar"
+            placeholder="Ingrese la cantidad de dolares"
             onChange={(e) => setMonto(e.target.value)}
           />
           <button onClick={compra}>Comprar</button>

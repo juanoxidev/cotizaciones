@@ -1,15 +1,19 @@
 import "./CotizacionesCard.css";
 const CotizacionesCard = ({ nombre, cotizacion, monto, operacion }) => {
   const { compra, venta } = cotizacion;
+  const formatoGuarani = new Intl.NumberFormat("es-PY", {
+    style: "currency",
+    currency: "PYG",
+  });
   const render = () => {
     if (operacion === "vender" && monto != 0) {
       return (
         <div className="container">
           <div className="container-header">
             <p>{nombre}</p>
-            <p>{`${monto * compra} PYG`}</p>
+            <p>{`${formatoGuarani.format(monto * compra)}`}</p>
           </div>
-          <p>Compra cada dolar a ${compra}.- PYG</p>
+          <p>Compra cada dolar a {formatoGuarani.format(compra)}.-</p>
         </div>
       );
     } else if (operacion === "comprar" && monto != 0) {
@@ -18,9 +22,9 @@ const CotizacionesCard = ({ nombre, cotizacion, monto, operacion }) => {
           <div className="container">
             <div className="container-header">
               <p>{nombre}</p>
-              <p>{`${monto * venta} PYG`}</p>
+              <p>{`${formatoGuarani.format(monto * compra)}`}</p>
             </div>
-            <p>Vende cada dolar a ${venta}.- PYG</p>
+            <p>Vende cada dolar a {formatoGuarani.format(venta)}.-</p>.-
           </div>
         </>
       );
