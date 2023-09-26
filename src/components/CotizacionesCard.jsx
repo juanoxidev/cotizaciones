@@ -1,5 +1,5 @@
 import "./CotizacionesCard.css";
-const CotizacionesCard = ({ nombre, cotizacion, monto, operacion }) => {
+const CotizacionesCard = ({ casa, cotizacion, monto, operacion }) => {
   const { compra, venta } = cotizacion;
   const formatoGuarani = new Intl.NumberFormat("es-PY", {
     style: "currency",
@@ -10,7 +10,7 @@ const CotizacionesCard = ({ nombre, cotizacion, monto, operacion }) => {
       return (
         <div className="card">
           <div className="card-header">
-            <p>{nombre}</p>
+            <p>{casa}</p>
             <p>{`${formatoGuarani.format(monto * compra)}`}</p>
           </div>
           <p>Compra cada dolar a {formatoGuarani.format(compra)}.-</p>
@@ -20,7 +20,7 @@ const CotizacionesCard = ({ nombre, cotizacion, monto, operacion }) => {
       return (
         <div className="card">
           <div className="card-header">
-            <p>{nombre}</p>
+            <p>{casa}</p>
             <p>{`${formatoGuarani.format(monto * venta)}`}</p>
           </div>
           <p>Vende cada dolar a {formatoGuarani.format(venta)}.-</p>

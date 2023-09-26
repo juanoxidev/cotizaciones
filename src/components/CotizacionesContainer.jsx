@@ -3,7 +3,7 @@ import CotizacionesCard from "./CotizacionesCard";
 import "./CotizacionesContainer.css";
 
 const CotizacionesContainer = () => {
-  const [guarani, setGuarani] = useState([]);
+  const [cCambio, setCCambio] = useState([]);
   const [fecha, setFecha] = useState("");
   const [monto, setMonto] = useState("");
   const [operacion, setOperacion] = useState("");
@@ -11,65 +11,20 @@ const CotizacionesContainer = () => {
     fetch("https://dolar.melizeche.com/api/1.0/")
       .then((response) => response.json()) //
       .then((data) => {
-        const casasDeCambio = [
-          {
-            nombre: "BCP",
-            cotizacion: {
-              compra: data.dolarpy.bcp.compra,
-              venta: data.dolarpy.bcp.venta,
-            },
-          },
-          {
-            nombre: "CAMBIOS BONANZA",
-            cotizacion: data.dolarpy.bonanza,
-          },
-          {
-            nombre: "CAMBIOS ALBERDI",
-            cotizacion: data.dolarpy.cambiosalberdi,
-          },
-          {
-            nombre: "CAMBIOS CHACO",
-            cotizacion: data.dolarpy.cambioschaco,
-          },
-          {
-            nombre: "EURO CAMBIOS",
-            cotizacion: data.dolarpy.eurocambios,
-          },
-          {
-            nombre: "GNB FUSION",
-            cotizacion: data.dolarpy.gnbfusion,
-          },
-          {
-            nombre: "LA MONEDA CAMBIOS",
-            cotizacion: data.dolarpy.lamoneda,
-          },
-          {
-            nombre: "MAXICAMBIOS",
-            cotizacion: data.dolarpy.maxicambios,
-          },
-          {
-            nombre: "MUNDIAL CAMBIOS",
-            cotizacion: data.dolarpy.mundialcambios,
-          },
-          {
-            nombre: "MYD CAMBIOS",
-            cotizacion: data.dolarpy.mydcambios,
-          },
-          {
-            nombre: "SET",
-            cotizacion: data.dolarpy.set,
-          },
-          {
-            nombre: "VISION",
-            cotizacion: data.dolarpy.vision,
-          },
-        ];
-        const { updated } = data;
-        setGuarani(casasDeCambio);
+        const { updated, dolarpy } = data;
+        // SE GUARDAN LAS CASAS EN UN ARRAY QUE ITERA ABAJO
+        let casas = [];
+        for (let casa in dolarpy) {
+          // COMO GUARDAR EL NOMBRE DEL OBJETO COMO PROPIEDAD CASA IN DOLARPY
+          let objetoCasa = { casa, cotizacion: { ...dolarpy[casa] } };
+          casas.push(objetoCasa);
+        }
+        setCCambio(casas);
         setFecha(updated);
       })
       .catch((error) => console.error("Error al obtener los datos", error));
-  });
+  }, []);
+
   const compra = (e) => {
     e.preventDefault();
     setOperacion("comprar");
@@ -97,12 +52,12 @@ const CotizacionesContainer = () => {
         </form>
       </div>
       <div className="container-cards">
-        {guarani.map((c, index) => {
-          const { nombre, cotizacion } = c;
+        {cCambio.map((c, index) => {
+          const { casa, cotizacion } = c;
           return (
             <div key={index}>
               <CotizacionesCard
-                nombre={nombre}
+                casa={casa.toUpperCase()}
                 cotizacion={cotizacion}
                 monto={monto}
                 operacion={operacion}
