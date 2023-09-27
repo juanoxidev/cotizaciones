@@ -47,10 +47,10 @@ const CotizacionesContainer = () => {
     setOperacion("vender");
   };
 
-  // const formatoPeso = new Intl.NumberFormat("es-AR", {
-  //   style: "currency",
-  //   currency: "ARS",
-  // });
+  const formatoDolar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
   return (
     <>
       <div className="encabezado">
@@ -63,8 +63,14 @@ const CotizacionesContainer = () => {
             placeholder="Ingrese la cantidad de pesos"
             onChange={(e) => setMonto(e.target.value)}
           />
-          <button onClick={compra}>Comprar</button>
-          <button onClick={venta}>Vender</button>
+          <p>
+            {monto > 0 &&
+              `Dolares: ${formatoDolar.format(
+                Number((monto / dolar).toFixed(2))
+              )}`}
+          </p>
+          {/* <button onClick={compra}>Comprar</button> */}
+          <button onClick={venta}>ARS ➡ GS</button>
         </form>
       </div>
       <div className="container-cards">
