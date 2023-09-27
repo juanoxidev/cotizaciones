@@ -4,9 +4,11 @@ import "./CotizacionesContainer.css";
 
 const CotizacionesContainer = () => {
   const [cCambio, setCCambio] = useState([]);
-  const [fecha, setFecha] = useState("");
+  const [fecha, setFecha] = useState();
   const [monto, setMonto] = useState("");
   const [operacion, setOperacion] = useState("");
+  const [dolar, setDolar] = useState();
+
   useEffect(() => {
     fetch("https://dolar.melizeche.com/api/1.0/")
       .then((response) => response.json()) //
@@ -25,6 +27,16 @@ const CotizacionesContainer = () => {
       .catch((error) => console.error("Error al obtener los datos", error));
   }, []);
 
+  useEffect(() => {
+    fetch("https://criptoya.com/api/dolar")
+      .then((response) => response.json()) //
+      .then((data) => {
+        const { blue } = data;
+        setDolar(blue);
+      })
+      .catch((error) => console.error("Error al obtener los datos", error));
+  }, []);
+
   const compra = (e) => {
     e.preventDefault();
     setOperacion("comprar");
@@ -35,16 +47,20 @@ const CotizacionesContainer = () => {
     setOperacion("vender");
   };
 
+  // const formatoPeso = new Intl.NumberFormat("es-AR", {
+  //   style: "currency",
+  //   currency: "ARS",
+  // });
   return (
     <>
       <div className="encabezado">
-        <h1>Cotizaciones USD - GS </h1>
+        <h1>Cotizaciones ARS - GS </h1>
         <h3>Ultima Actualizacion: {fecha}</h3>
         <form>
           <input
             className="monto"
             type="number"
-            placeholder="Ingrese la cantidad de dolares"
+            placeholder="Ingrese la cantidad de pesos"
             onChange={(e) => setMonto(e.target.value)}
           />
           <button onClick={compra}>Comprar</button>
@@ -61,6 +77,7 @@ const CotizacionesContainer = () => {
                 cotizacion={cotizacion}
                 monto={monto}
                 operacion={operacion}
+                cotDolar={dolar}
               />
             </div>
           );
