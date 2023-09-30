@@ -65,10 +65,9 @@ const CotizacionesContainer = () => {
           />
           <p>
             {monto > 0 &&
-              `Dolares: ${formatoDolar.format(
-                Number((monto / dolar).toFixed(2))
-              )}`}
+              `Dolares: ${formatoDolar.format(Number(monto / dolar))}`}
           </p>
+          <p>Cotizacion del dolar: {formatoDolar.format(dolar)}</p>
           {/* <button onClick={compra}>Comprar</button> */}
           <button onClick={venta}>ARS ➡ GS</button>
         </form>

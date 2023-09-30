@@ -18,6 +18,9 @@
 
 .encabezado form input {
   text-align: center;
+  width: 12rem;
+  height: 2rem;
+  margin: auto;
 }
 
 .container-cards {
@@ -27,4 +30,10 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
+}
+
+.encabezado form button {
+  width: 10rem;
+  text-align: center;
+  margin: auto;
 }
